@@ -1,0 +1,20 @@
+{
+  "name": "streamvault-panel",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Panel móvil para revendedores de streaming StreamVault.",
+  "scripts": {
+    "serve": "npx serve www",
+    "cap:add:android": "npx cap add android",
+    "cap:sync": "npx cap sync android",
+    "apk:debug": "npm run cap:add:android && npm run cap:sync && cd android && ./gradlew assembleDebug"
+  },
+  "dependencies": {
+    "@capacitor/android": "latest",
+    "@capacitor/core": "latest"
+  },
+  "devDependencies": {
+    "@capacitor/cli": "latest",
+    "serve": "latest"
+  }
+}

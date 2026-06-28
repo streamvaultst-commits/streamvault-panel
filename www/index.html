@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#101522">
+  <title>StreamVault Panel</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <header class="hero">
+      <div class="brand-row">
+        <img src="assets/logo.svg" alt="StreamVault" class="logo">
+        <div>
+          <p class="eyebrow">Panel de clientes</p>
+          <h1>StreamVault</h1>
+        </div>
+      </div>
+      <button class="ghost-button" id="installBtn" hidden>Instalar</button>
+    </header>
+
+    <main>
+      <section class="cards-grid" aria-label="Resumen del mes">
+        <article class="metric-card">
+          <span>Ventas mes</span>
+          <strong id="salesMonth">$0</strong>
+        </article>
+        <article class="metric-card">
+          <span>Ganancia mes</span>
+          <strong id="profitMonth">$0</strong>
+        </article>
+        <article class="metric-card">
+          <span>Clientes activos</span>
+          <strong id="activeCount">0</strong>
+        </article>
+        <article class="metric-card">
+          <span>Vencen 7 días</span>
+          <strong id="dueSoonCount">0</strong>
+        </article>
+      </section>
+
+      <section class="panel">
+        <div class="panel-header">
+          <div>
+            <p class="eyebrow">Registro rápido</p>
+            <h2>Agregar cliente</h2>
+          </div>
+          <button class="secondary-button" id="clearFormBtn" type="button">Limpiar</button>
+        </div>
+
+        <form id="clientForm" class="form-grid">
+          <input type="hidden" id="clientId">
+
+          <label>
+            Nombre del cliente
+            <input id="name" required placeholder="Ej. Carlos López">
+          </label>
+
+          <label>
+            WhatsApp
+            <input id="phone" inputmode="tel" placeholder="55 1234 5678">
+          </label>
+
+          <label>
+            Servicio o combo
+            <select id="service"></select>
+          </label>
+
+          <label>
+            Plan / detalle
+            <input id="plan" placeholder="Ej. pantalla individual, combo Nova">
+          </label>
+
+          <label>
+            Precio al cliente
+            <input id="price" type="number" min="0" step="1" placeholder="80">
+          </label>
+
+          <label>
+            Costo para ti
+            <input id="cost" type="number" min="0" step="1" placeholder="50">
+          </label>
+
+          <label>
+            Método de pago
+            <select id="payment"></select>
+          </label>
+
+          <label>
+            Renovación
+            <input id="renewalDate" type="date" required>
+          </label>
+
+          <label>
+            Estado
+            <select id="status">
+              <option value="active">Activo</option>
+              <option value="due">Por vencer</option>
+              <option value="expired">Vencido</option>
+              <option value="cancelled">Cancelado</option>
+            </select>
+          </label>
+
+          <label class="full">
+            Notas
+            <textarea id="notes" rows="2" placeholder="Correo, contraseña, perfil, detalles de pago..."></textarea>
+          </label>
+
+          <button class="primary-button full" type="submit">Guardar cliente</button>
+        </form>
+      </section>
+
+      <section class="panel">
+        <div class="panel-header">
+          <div>
+            <p class="eyebrow">Control</p>
+            <h2>Clientes</h2>
+          </div>
+          <div class="actions">
+            <button class="secondary-button" id="exportBtn" type="button">Exportar</button>
+            <label class="secondary-button file-button">
+              Importar
+              <input id="importFile" type="file" accept="application/json">
+            </label>
+          </div>
+        </div>
+
+        <div class="toolbar">
+          <input id="search" placeholder="Buscar cliente, servicio o plan...">
+          <select id="filterStatus">
+            <option value="all">Todos</option>
+            <option value="active">Activos</option>
+            <option value="due">Por vencer</option>
+            <option value="expired">Vencidos</option>
+            <option value="cancelled">Cancelados</option>
+          </select>
+        </div>
+
+        <div id="clientList" class="client-list"></div>
+        <p id="emptyState" class="empty-state" hidden>No hay clientes todavía. Agrega el primero arriba.</p>
+      </section>
+
+      <section class="panel settings-panel">
+        <div>
+          <p class="eyebrow">Configuración</p>
+          <h2>Métodos de pago</h2>
+          <p class="muted">Separados por coma. Aparecen en los mensajes de renovación.</p>
+        </div>
+        <div class="settings-row">
+          <input id="paymentMethodsInput" placeholder="Transferencia, Oxxo, Mercado Pago">
+          <button class="secondary-button" id="savePaymentsBtn" type="button">Guardar</button>
+        </div>
+      </section>
+    </main>
+
+    <nav class="bottom-nav" aria-label="Acciones rápidas">
+      <button data-scroll="clientForm">Agregar</button>
+      <button data-scroll="clientList">Clientes</button>
+      <button id="backupShortcut">Respaldo</button>
+    </nav>
+
+    <div id="toast" role="status" aria-live="polite"></div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

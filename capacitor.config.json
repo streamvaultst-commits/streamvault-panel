@@ -1,0 +1,8 @@
+{
+  "appId": "mx.streamvault.panel",
+  "appName": "StreamVault Panel",
+  "webDir": "www",
+  "server": {
+    "androidScheme": "https"
+  }
+}

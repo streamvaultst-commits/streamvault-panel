@@ -1,0 +1,19 @@
+{
+  "name": "StreamVault Panel",
+  "short_name": "StreamVault",
+  "description": "Panel de clientes y renovaciones para revendedores de streaming.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#070a12",
+  "theme_color": "#101522",
+  "icons": [
+    {
+      "src": "assets/logo.svg",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
